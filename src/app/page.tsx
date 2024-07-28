@@ -1,5 +1,6 @@
-import MaxWidthWrapper from "@/component/MaxWidthWrapper";
-import Image from "next/image";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -9,6 +10,15 @@ export default function Home() {
           AskPdf is now public!
         </p>
       </div>
+      <h1 className="max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl">
+        Chat with your <span className="text-green-600">PDFs</span> in a second
+      </h1>
+      <p className="mt-5 max-w-prose text-zinc-700 sm:text-lg">
+        AskPdf allows to have conversations with any PDF document. Just upload your PDF and start chatting with it.
+      </p>
+      <Link href='/dashboard' target='_blank'>
+        Get started  <ArrowRight className="ml-2 h-5 w-5" />
+      </Link>
     </MaxWidthWrapper>
   );
 }
