@@ -12,6 +12,7 @@ export const appRouter = router({
     }
 
     // Check if user is in the database
+    const dbUser = await 
   })
 });
 
