@@ -10,21 +10,33 @@ const Page = () => {
   const searchParams = useSearchParams()
   const origin = searchParams.get('origin')
 
-  trpc.authCallback.useQuery(undefined, {
-    onSuccess: ({ success }: { success: boolean }) => {
-      if (success) {
-        // user is synced to db
-        router.push(origin ? `/${origin}` : '/dashboard')
-      }
-    },
-    onError: (err: any) => {
-      if (err.data?.code === 'UNAUTHORIZED') {
-        router.push('/sign-in')
-      }
-    },
-    retry: true,
-    retryDelay: 500,
-  })
+  // trpc.authCallback.useQuery(undefined, {
+  //   onSuccess: ({ success }: { success: boolean }) => {
+  //     console.log('success', success)
+  //     if (success) {
+  //       // user is synced to db
+  //       router.push(origin ? `/${origin}` : '/dashboard')
+  //     }
+  //   },
+
+  //   onError: (err: any) => {
+  //     console.log('err', err)
+  //     if (err.data?.code === 'UNAUTHORIZED') {
+  //       router.push('/sign-in')
+  //     }
+  //   },
+  //   retry: true,
+  //   retryDelay: 500,
+  // })
+
+  const { isError, isSuccess } = trpc.authCallback.useQuery();
+  if (isSuccess) {
+    // user is synced to db
+    router.push(origin ? `/${origin}` : '/dashboard')
+  }
+  if (isError) {
+    router.push('/sign-in')
+  }
 
   return (
     <div className='w-full mt-24 flex justify-center'>
