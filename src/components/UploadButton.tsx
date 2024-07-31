@@ -11,7 +11,7 @@ import { Button } from './ui/button'
 import Dropzone from 'react-dropzone'
 import { Cloud, File, Loader2 } from 'lucide-react'
 import { Progress } from './ui/progress'
-// import { useUploadThing } from '@/lib/uploadthing'
+import { useUploadThing } from '@/lib/uploadthing'
 import { useToast } from './ui/use-toast'
 import { trpc } from '@/app/_trpc/client'
 import { useRouter } from 'next/navigation'
@@ -25,6 +25,9 @@ const UploadDropzone = ({
 
   const [isUploading, setIsUploading] = useState<boolean>(false)
   const [uploadProgress, setUploadProgress] = useState<number>(0)
+
+  const { startUpload } = useUploadThing("pdfUploader")
+
   const { toast } = useToast()
 
   // const { startUpload } = useUploadThing(
@@ -66,28 +69,28 @@ const UploadDropzone = ({
 
         const progressInterval = startSimulatedProgress()
 
-        // // handle file uploading
-        // const res = await startUpload(acceptedFile)
+        // handle file uploading
+        const res = await startUpload(acceptedFile)
 
-        // if (!res) {
-        //   return toast({
-        //     title: 'Something went wrong',
-        //     description: 'Please try again later',
-        //     variant: 'destructive',
-        //   })
-        // }
+        if (!res) {
+          return toast({
+            title: 'Something went wrong',
+            description: 'Please try again later',
+            variant: 'destructive',
+          })
+        }
 
-        // const [fileResponse] = res
+        const [fileResponse] = res
 
-        // const key = fileResponse?.key
+        const key = fileResponse?.key
 
-        // if (!key) {
-        //   return toast({
-        //     title: 'Something went wrong',
-        //     description: 'Please try again later',
-        //     variant: 'destructive',
-        //   })
-        // }
+        if (!key) {
+          return toast({
+            title: 'Something went wrong',
+            description: 'Please try again later',
+            variant: 'destructive',
+          })
+        }
 
         clearInterval(progressInterval)
         setUploadProgress(100)
