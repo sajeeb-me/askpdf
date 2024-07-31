@@ -23,10 +23,8 @@ const UploadDropzone = ({
 }) => {
   const router = useRouter()
 
-  const [isUploading, setIsUploading] =
-    useState<boolean>(false)
-  const [uploadProgress, setUploadProgress] =
-    useState<number>(0)
+  const [isUploading, setIsUploading] = useState<boolean>(false)
+  const [uploadProgress, setUploadProgress] = useState<number>(0)
   const { toast } = useToast()
 
   // const { startUpload } = useUploadThing(
@@ -64,8 +62,9 @@ const UploadDropzone = ({
       multiple={false}
       onDrop={async (acceptedFile) => {
         setIsUploading(true)
+        console.log(acceptedFile)
 
-        // const progressInterval = startSimulatedProgress()
+        const progressInterval = startSimulatedProgress()
 
         // // handle file uploading
         // const res = await startUpload(acceptedFile)
@@ -90,7 +89,7 @@ const UploadDropzone = ({
         //   })
         // }
 
-        // clearInterval(progressInterval)
+        clearInterval(progressInterval)
         setUploadProgress(100)
 
         // startPolling({ key })
@@ -130,13 +129,13 @@ const UploadDropzone = ({
               {isUploading ? (
                 <div className='w-full mt-4 max-w-xs mx-auto'>
                   <Progress
-                    indicatorColor={
-                      uploadProgress === 100
-                        ? 'bg-green-500'
-                        : ''
-                    }
+                    // indicatorColor={
+                    //   uploadProgress === 100
+                    //     ? 'bg-green-500'
+                    //     : ''
+                    // }
                     value={uploadProgress}
-                    className='h-1 w-full bg-zinc-200'
+                    className={`h-1 w-full ${uploadProgress === 100 ? 'bg-green-500' : 'bg-zinc-200'}`}
                   />
                   {uploadProgress === 100 ? (
                     <div className='flex gap-1 items-center justify-center text-sm text-zinc-700 text-center pt-2'>
