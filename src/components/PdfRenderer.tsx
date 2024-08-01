@@ -9,8 +9,8 @@ import {
 } from 'lucide-react'
 import { Document, Page, pdfjs } from 'react-pdf'
 
-import 'react-pdf/dist/Page/AnnotationLayer.css'
-import 'react-pdf/dist/Page/TextLayer.css'
+// import 'react-pdf/dist/Page/AnnotationLayer.css'
+// import 'react-pdf/dist/Page/TextLayer.css' 
 import { useToast } from './ui/use-toast'
 
 import { useResizeDetector } from 'react-resize-detector'
@@ -33,6 +33,11 @@ import {
 import SimpleBar from 'simplebar-react'
 // import PdfFullscreen from './PdfFullscreen'
 
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
+import 'react-pdf/dist/esm/Page/TextLayer.css'
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 interface PdfRendererProps {
@@ -40,6 +45,7 @@ interface PdfRendererProps {
 }
 
 const PdfRenderer = ({ url }: PdfRendererProps) => {
+  // console.log("PdfRendererProps", url)
   const { toast } = useToast()
 
   const [numPages, setNumPages] = useState<number>()
@@ -76,7 +82,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
     resolver: zodResolver(CustomPageValidator),
   })
 
-  console.log(errors)
+  console.log("errors", errors)
 
   const { width, ref } = useResizeDetector()
 
