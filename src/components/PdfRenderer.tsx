@@ -31,7 +31,7 @@ import {
 } from './ui/dropdown-menu'
 
 import SimpleBar from 'simplebar-react'
-// import PdfFullscreen from './PdfFullscreen'
+import PdfFullscreen from './PdfFullscreen'
 
 // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -82,7 +82,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
     resolver: zodResolver(CustomPageValidator),
   })
 
-  console.log("errors", errors)
+  console.log("errors from pdf render page: ", errors)
 
   const { width, ref } = useResizeDetector()
 
@@ -185,7 +185,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             <RotateCw className='h-4 w-4' />
           </Button>
 
-          {/* <PdfFullscreen fileUrl={url} /> */}
+          <PdfFullscreen fileUrl={url} />
         </div>
       </div>
 
