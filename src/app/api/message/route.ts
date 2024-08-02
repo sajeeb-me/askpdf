@@ -31,9 +31,10 @@ export const POST = async (req: NextRequest) => {
 
     await db.message.create({
         data: {
-            fileId,
-            message,
+            text: message,
+            isUserMessage: true,
             userId,
+            fileId,
         }
     });
 }
