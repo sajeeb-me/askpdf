@@ -5,8 +5,6 @@ import { UploadThingError } from "uploadthing/server";
 
 const f = createUploadthing();
 
-const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
-
 export const ourFileRouter = {
     pdfUploader: f({ pdf: { maxFileSize: "4MB" } })
         .middleware(async ({ req }) => {
@@ -22,8 +20,8 @@ export const ourFileRouter = {
                     name: file.name,
                     userId: metadata.userId,
                     // url: `https://uploadthing-prod.s3.amazonaws.com/${file.key}`,
-                    url: `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
-                    // url: file.url,
+                    // url: `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
+                    url: file.url,
                     uploadStatus: 'PROCESSING',
                 },
             });
