@@ -9,12 +9,12 @@ interface ChatInputProps {
 }
 
 const ChatInput = ({ isDisabled }: ChatInputProps) => {
-//   const {
-//     addMessage,
-//     handleInputChange,
-//     isLoading,
-//     message,
-//   } = useContext(ChatContext)
+  //   const {
+  //     addMessage,
+  //     handleInputChange,
+  //     isLoading,
+  //     message,
+  //   } = useContext(ChatContext)
 
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -49,7 +49,7 @@ const ChatInput = ({ isDisabled }: ChatInputProps) => {
                 className='absolute bottom-1.5 right-[8px]'
                 aria-label='send message'
                 onClick={() => {
-                //   addMessage()
+                  //   addMessage()
 
                   textareaRef.current?.focus()
                 }}>
