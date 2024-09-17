@@ -69,7 +69,7 @@ export const appRouter = router({
       })
 
       if (!file) throw new TRPCError({ code: 'NOT_FOUND' })
-      console.log("file", file)  // TODO: Remove this line
+      console.log("file from trpc/index.ts: ", file)  // TODO: Remove this line
 
       return file
     }),

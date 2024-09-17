@@ -71,7 +71,7 @@ const UploadDropzone = ({
         // handle file uploading
         const res = await startUpload(acceptedFile)
 
-        console.log("res", res)
+        console.log("response from uploadbutton: ", res) // TODO: Remove this line
 
         if (!res) {
           return toast({
