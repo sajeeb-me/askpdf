@@ -10,7 +10,7 @@ import {
 import { Document, Page, pdfjs } from 'react-pdf'
 
 import 'react-pdf/dist/Page/AnnotationLayer.css'
-import 'react-pdf/dist/Page/TextLayer.css' 
+import 'react-pdf/dist/Page/TextLayer.css'
 import { useToast } from './ui/use-toast'
 
 import { useResizeDetector } from 'react-resize-detector'
@@ -60,9 +60,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
       ),
   })
 
-  type TCustomPageValidator = z.infer<
-    typeof CustomPageValidator
-  >
+  type TCustomPageValidator = z.infer<typeof CustomPageValidator>
 
   const {
     register,
@@ -76,7 +74,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
     resolver: zodResolver(CustomPageValidator),
   })
 
-  console.log("errors from pdf render page: ", errors)
+  console.log("errors from pdf render page: ", errors)  // TODO: Remove this line
 
   const { width, ref } = useResizeDetector()
 
